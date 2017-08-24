@@ -40,6 +40,7 @@ public class CacheConfiguration {
             cm.createCache(br.com.sipunp.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(br.com.sipunp.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(br.com.sipunp.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(br.com.sipunp.domain.Endereco.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
