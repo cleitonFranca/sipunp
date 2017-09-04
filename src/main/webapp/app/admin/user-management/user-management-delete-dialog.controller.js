@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .controller('UserManagementDeleteController', UserManagementDeleteController);
 
     UserManagementDeleteController.$inject = ['$uibModalInstance', 'entity', 'User'];

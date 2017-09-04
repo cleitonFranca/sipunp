@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="unpsipApp.controleAtendimento.detail.title">Controle Atendimento</span> {{vm.controleAtendimento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="unpsipApp.controleAtendimento.numero">Numero</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.numero}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.idade">Idade</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.idade | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.naturalidade">Naturalidade</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.naturalidade}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.queixa">Queixa</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.queixa}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.encaminhamento">Encaminhamento</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.encaminhamento}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.vinculo">Vinculo</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.vinculo}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.dataCadastro">Data Cadastro</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.dataCadastro | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.dataAlteracao">Data Alteracao</span></dt>
+        <dd>
+            <span>{{vm.controleAtendimento.dataAlteracao | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.user">User</span></dt>
+        <dd>
+            {{vm.controleAtendimento.user.login}}
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.cliente">Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.controleAtendimento.cliente.id})">{{vm.controleAtendimento.cliente.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="controle-atendimento-detail.edit({id:vm.controleAtendimento.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

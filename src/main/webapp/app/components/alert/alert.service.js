@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .provider('AlertService', AlertService);
 
     function AlertService () {

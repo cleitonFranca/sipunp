@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .controller('RequestResetController', RequestResetController);
 
     RequestResetController.$inject = ['$timeout', 'Auth'];

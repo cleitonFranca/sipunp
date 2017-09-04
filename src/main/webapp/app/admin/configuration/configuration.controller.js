@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .controller('JhiConfigurationController', JhiConfigurationController);
 
     JhiConfigurationController.$inject = ['$filter','JhiConfigurationService'];

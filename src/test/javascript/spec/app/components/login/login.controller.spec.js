@@ -2,7 +2,7 @@
 
 describe('Controller Tests', function () {
 
-    beforeEach(module('sipunpApp'));
+    beforeEach(module('unpsipApp'));
 
     describe('LoginController', function () {
         var $scope, authService;

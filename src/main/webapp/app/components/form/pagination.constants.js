@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .constant('paginationConstants', {
             'itemsPerPage': 20
         });

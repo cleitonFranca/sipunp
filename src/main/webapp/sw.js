@@ -1,5 +1,5 @@
-var dataCacheName = '"sipunpApp-v1';
-var cacheName = '"sipunpApp-1';
+var dataCacheName = '"unpsipApp-v1';
+var cacheName = '"unpsipApp-1';
 var filesToCache = [
     '/',
     '/index.html'

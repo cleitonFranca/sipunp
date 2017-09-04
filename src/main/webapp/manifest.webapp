@@ -1,6 +1,6 @@
 {
-  "name": "sipunpApp",
-  "short_name": "sipunpApp",
+  "name": "unpsipApp",
+  "short_name": "unpsipApp",
   "icons": [
       {
           "src": "/content/images/logo-jhipster.png",

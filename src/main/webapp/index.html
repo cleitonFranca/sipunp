@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>sipunp</title>
+    <title>unpsip</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <meta name="theme-color" content="#000000">
@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
 </head>
-<body ng-app="sipunpApp" ng-strict-di>
+<body ng-app="unpsipApp" ng-strict-di>
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -90,6 +90,7 @@
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
+    <script src="app/services/auth/sessions.service.js"></script>
     <script src="app/services/auth/register.service.js"></script>
     <script src="app/services/auth/principal.service.js"></script>
     <script src="app/services/auth/password-reset-init.service.js"></script>
@@ -97,8 +98,8 @@
     <script src="app/services/auth/password.service.js"></script>
     <script src="app/services/auth/has-authority.directive.js"></script>
     <script src="app/services/auth/has-any-authority.directive.js"></script>
+    <script src="app/services/auth/auth.session.service.js"></script>
     <script src="app/services/auth/auth.service.js"></script>
-    <script src="app/services/auth/auth.jwt.service.js"></script>
     <script src="app/services/auth/activate.service.js"></script>
     <script src="app/services/auth/account.service.js"></script>
     <script src="app/layouts/navbar/navbar.controller.js"></script>
@@ -107,12 +108,20 @@
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
-    <script src="app/entities/endereco/endereco-dialog.controller.js"></script>
-    <script src="app/entities/endereco/endereco-detail.controller.js"></script>
-    <script src="app/entities/endereco/endereco-delete-dialog.controller.js"></script>
-    <script src="app/entities/endereco/endereco.state.js"></script>
-    <script src="app/entities/endereco/endereco.service.js"></script>
-    <script src="app/entities/endereco/endereco.controller.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento-dialog.controller.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento-detail.controller.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento-delete-dialog.controller.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento.state.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento.service.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento.search.service.js"></script>
+    <script src="app/entities/controle-atendimento/controle-atendimento.controller.js"></script>
+    <script src="app/entities/cliente/cliente-dialog.controller.js"></script>
+    <script src="app/entities/cliente/cliente-detail.controller.js"></script>
+    <script src="app/entities/cliente/cliente-delete-dialog.controller.js"></script>
+    <script src="app/entities/cliente/cliente.state.js"></script>
+    <script src="app/entities/cliente/cliente.service.js"></script>
+    <script src="app/entities/cliente/cliente.search.service.js"></script>
+    <script src="app/entities/cliente/cliente.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
@@ -140,7 +149,6 @@
     <script src="app/blocks/interceptor/notification.interceptor.js"></script>
     <script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
     <script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>
-    <script src="app/blocks/interceptor/auth.interceptor.js"></script>
     <script src="app/blocks/handlers/translation.handler.js"></script>
     <script src="app/blocks/handlers/state.handler.js"></script>
     <script src="app/blocks/config/uib-pagination.config.js"></script>
@@ -179,6 +187,8 @@
     <script src="app/admin/admin.state.js"></script>
     <script src="app/account/settings/settings.state.js"></script>
     <script src="app/account/settings/settings.controller.js"></script>
+    <script src="app/account/sessions/sessions.state.js"></script>
+    <script src="app/account/sessions/sessions.controller.js"></script>
     <script src="app/account/reset/request/reset.request.state.js"></script>
     <script src="app/account/reset/request/reset.request.controller.js"></script>
     <script src="app/account/reset/finish/reset.finish.state.js"></script>

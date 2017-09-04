@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .directive('maxbytes', maxbytes);
 
     function maxbytes () {

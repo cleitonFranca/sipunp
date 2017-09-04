@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .component('jhiAlert', jhiAlert);
 
     jhiAlertController.$inject = ['$scope', 'AlertService'];

@@ -1,14 +1,19 @@
 version: '2'
 services:
-    sipunp-app:
-        image: sipunp
+    unpsip-app:
+        image: unpsip
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://sipunp-postgresql:5432/sipunp
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://unpsip-postgresql:5432/unpsip
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=unpsip-elasticsearch:9300
         ports:
             - 8080:8080
-    sipunp-postgresql:
+    unpsip-postgresql:
         extends:
             file: postgresql.yml
-            service: sipunp-postgresql
+            service: unpsip-postgresql
+    unpsip-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: unpsip-elasticsearch

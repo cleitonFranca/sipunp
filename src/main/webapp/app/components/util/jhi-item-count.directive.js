@@ -18,6 +18,6 @@
     };
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .component('jhiItemCount', jhiItemCount);
 })();

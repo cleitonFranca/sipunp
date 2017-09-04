@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp', [
+        .module('unpsipApp', [
             'ngStorage',
             'tmh.dynamicLocale',
             'pascalprecht.translate',

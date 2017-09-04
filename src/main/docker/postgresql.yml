@@ -1,11 +1,11 @@
 version: '2'
 services:
-    sipunp-postgresql:
+    unpsip-postgresql:
         image: postgres:9.6.2
         # volumes:
-        #     - ~/volumes/jhipster/sipunp/postgresql/:/var/lib/postgresql/data/
+        #     - ~/volumes/jhipster/unpsip/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=sipunp
+            - POSTGRES_USER=unpsip
             - POSTGRES_PASSWORD=
         ports:
             - 5432:5432

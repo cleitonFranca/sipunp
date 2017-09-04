@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sipunpApp')
+        .module('unpsipApp')
         .factory('ParseLinks', ParseLinks);
 
     function ParseLinks () {

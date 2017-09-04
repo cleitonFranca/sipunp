@@ -1,0 +1,31 @@
+{
+    "unpsipApp": {
+        "controleAtendimento" : {
+            "home": {
+                "title": "Controle Atendimentos",
+                "createLabel": "Crear nuevo Controle Atendimento",
+                "createOrEditLabel": "Crear o editar Controle Atendimento",
+                "search": "Search for Controle Atendimento"
+            },
+            "created": "Un nuevo Controle Atendimento ha sido creado con el identificador {{ param }}",
+            "updated": "Un Controle Atendimento ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Controle Atendimento ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Controle Atendimento {{ id }}?"
+            },
+            "detail": {
+                "title": "Controle Atendimento"
+            },
+            "numero": "Numero",
+            "idade": "Idade",
+            "naturalidade": "Naturalidade",
+            "queixa": "Queixa",
+            "encaminhamento": "Encaminhamento",
+            "vinculo": "Vinculo",
+            "dataCadastro": "Data Cadastro",
+            "dataAlteracao": "Data Alteracao",
+            "user": "User",
+            "cliente": "Cliente"
+        }
+    }
+}

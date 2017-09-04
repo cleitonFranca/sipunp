@@ -1,4 +1,4 @@
-// Generated on 2017-08-24 using generator-jhipster 4.6.2
+// Generated on 2017-09-04 using generator-jhipster 4.7.0
 'use strict';
 
 var gulp = require('gulp'),
@@ -88,7 +88,7 @@ gulp.task('html', function () {
     return gulp.src(config.app + 'app/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(templateCache({
-            module: 'sipunpApp',
+            module: 'unpsipApp',
             root: 'app/',
             moduleSystem: 'IIFE'
         }))
@@ -97,7 +97,7 @@ gulp.task('html', function () {
 
 gulp.task('ngconstant:dev', function () {
     return ngConstant({
-        name: 'sipunpApp',
+        name: 'unpsipApp',
         constants: {
             VERSION: util.parseVersion(),
             DEBUG_INFO_ENABLED: true,
@@ -112,7 +112,7 @@ gulp.task('ngconstant:dev', function () {
 
 gulp.task('ngconstant:prod', function () {
     return ngConstant({
-        name: 'sipunpApp',
+        name: 'unpsipApp',
         constants: {
             VERSION: util.parseVersion(),
             DEBUG_INFO_ENABLED: false,

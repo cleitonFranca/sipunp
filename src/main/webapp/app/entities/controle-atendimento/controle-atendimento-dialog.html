@@ -1,0 +1,116 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myControleAtendimentoLabel" data-translate="unpsipApp.controleAtendimento.home.createOrEditLabel">Create or edit a Controle Atendimento</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.controleAtendimento.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.controleAtendimento.id" readonly />
+        </div>
+        <div class="form-group">
+            <label data-translate="unpsipApp.controleAtendimento.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.controleAtendimento.user" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="unpsipApp.controleAtendimento.cliente" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.controleAtendimento.cliente" ng-options="cliente as cliente.nome for cliente in vm.clientes track by cliente.id" required>
+            </select>
+        </div>
+        <div ng-show="editForm.cliente.$invalid">
+            <p class="help-block"
+                ng-show="editForm.cliente.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.numero" for="field_numero">Numero</label>
+            <input type="number" class="form-control" name="numero" id="field_numero"
+                    ng-model="vm.controleAtendimento.numero"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.idade" for="field_idade">Idade</label>
+                <div class="input-group">
+                    <input id="field_idade" type="text" class="form-control" name="idade" uib-datepicker-popup="{{dateformat}}" ng-model="vm.controleAtendimento.idade" is-open="vm.datePickerOpenStatus.idade"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('idade')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.idade.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.idade.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.naturalidade" for="field_naturalidade">Naturalidade</label>
+            <input type="text" class="form-control" name="naturalidade" id="field_naturalidade"
+                    ng-model="vm.controleAtendimento.naturalidade"
+                    required/>
+            <div ng-show="editForm.naturalidade.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.naturalidade.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.queixa" for="field_queixa">Queixa</label>
+            <input type="text" class="form-control" name="queixa" id="field_queixa"
+                    ng-model="vm.controleAtendimento.queixa"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.encaminhamento" for="field_encaminhamento">Encaminhamento</label>
+            <input type="text" class="form-control" name="encaminhamento" id="field_encaminhamento"
+                    ng-model="vm.controleAtendimento.encaminhamento"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.vinculo" for="field_vinculo">Vinculo</label>
+            <input type="text" class="form-control" name="vinculo" id="field_vinculo"
+                    ng-model="vm.controleAtendimento.vinculo"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.dataCadastro" for="field_dataCadastro">Data Cadastro</label>
+                <div class="input-group">
+                    <input id="field_dataCadastro" type="text" class="form-control" name="dataCadastro" datetime-picker="{{dateformat}}" ng-model="vm.controleAtendimento.dataCadastro" is-open="vm.datePickerOpenStatus.dataCadastro"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dataCadastro')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="unpsipApp.controleAtendimento.dataAlteracao" for="field_dataAlteracao">Data Alteracao</label>
+                <div class="input-group">
+                    <input id="field_dataAlteracao" type="text" class="form-control" name="dataAlteracao" uib-datepicker-popup="{{dateformat}}" ng-model="vm.controleAtendimento.dataAlteracao" is-open="vm.datePickerOpenStatus.dataAlteracao"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dataAlteracao')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

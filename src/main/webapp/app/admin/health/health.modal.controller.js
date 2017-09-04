@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('sipunpApp')
+    angular.module('unpsipApp')
         .controller('HealthModalController', HealthModalController);
 
     HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];
