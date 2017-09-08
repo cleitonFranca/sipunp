@@ -5,9 +5,9 @@
         .module('unpsipApp')
         .controller('ControleAtendimentoDialogController', ControleAtendimentoDialogController);
 
-    ControleAtendimentoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'ControleAtendimento', 'User', 'Cliente'];
+    ControleAtendimentoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'ControleAtendimento', 'Cliente'];
 
-    function ControleAtendimentoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, ControleAtendimento, User, Cliente) {
+    function ControleAtendimentoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, ControleAtendimento, Cliente) {
         var vm = this;
 
         vm.controleAtendimento = entity;
@@ -15,7 +15,6 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.users = User.query();
         vm.clientes = Cliente.query();
 
         $timeout(function (){

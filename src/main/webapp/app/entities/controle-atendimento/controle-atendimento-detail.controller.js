@@ -5,9 +5,9 @@
         .module('unpsipApp')
         .controller('ControleAtendimentoDetailController', ControleAtendimentoDetailController);
 
-    ControleAtendimentoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'ControleAtendimento', 'User', 'Cliente'];
+    ControleAtendimentoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'ControleAtendimento', 'Cliente'];
 
-    function ControleAtendimentoDetailController($scope, $rootScope, $stateParams, previousState, entity, ControleAtendimento, User, Cliente) {
+    function ControleAtendimentoDetailController($scope, $rootScope, $stateParams, previousState, entity, ControleAtendimento, Cliente) {
         var vm = this;
 
         vm.controleAtendimento = entity;
