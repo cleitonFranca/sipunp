@@ -36,10 +36,6 @@
         <dd>
             <span>{{vm.controleAtendimento.dataAlteracao | date:'mediumDate'}}</span>
         </dd>
-        <dt><span data-translate="unpsipApp.controleAtendimento.user">User</span></dt>
-        <dd>
-            {{vm.controleAtendimento.user.login}}
-        </dd>
         <dt><span data-translate="unpsipApp.controleAtendimento.cliente">Cliente</span></dt>
         <dd>
             <a ui-sref="cliente-detail({id:vm.controleAtendimento.cliente.id})">{{vm.controleAtendimento.cliente.id}}</a>

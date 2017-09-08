@@ -50,9 +50,6 @@ public class ControleAtendimento implements Serializable {
     @Column(name = "data_alteracao")
     private LocalDate dataAlteracao;
 
-    @ManyToOne
-    private User user;
-
     @ManyToOne(optional = false)
     @NotNull
     private Cliente cliente;
@@ -167,19 +164,6 @@ public class ControleAtendimento implements Serializable {
 
     public void setDataAlteracao(LocalDate dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public ControleAtendimento user(User user) {
-        this.user = user;
-        return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Cliente getCliente() {

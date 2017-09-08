@@ -44,7 +44,6 @@
                     <th jh-sort-by="vinculo"><span data-translate="unpsipApp.controleAtendimento.vinculo">Vinculo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dataCadastro"><span data-translate="unpsipApp.controleAtendimento.dataCadastro">Data Cadastro</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dataAlteracao"><span data-translate="unpsipApp.controleAtendimento.dataAlteracao">Data Alteracao</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user.login"><span data-translate="unpsipApp.controleAtendimento.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cliente.id"><span data-translate="unpsipApp.controleAtendimento.cliente">Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -60,9 +59,6 @@
                     <td>{{controleAtendimento.vinculo}}</td>
                     <td>{{controleAtendimento.dataCadastro | date:'medium'}}</td>
                         <td>{{controleAtendimento.dataAlteracao | date:'mediumDate'}}</td>
-                    <td>
-                        {{controleAtendimento.user.login}}
-                    </td>
                     <td>
                         <a ui-sref="cliente-detail({id:controleAtendimento.cliente.id})">{{controleAtendimento.cliente.id}}</a>
                     </td>
