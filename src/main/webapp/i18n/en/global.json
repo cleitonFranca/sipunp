@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "controleAtendimento": "Controle Atendimento",
                 "cliente": "Cliente",
+                "endereco": "Endereco",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

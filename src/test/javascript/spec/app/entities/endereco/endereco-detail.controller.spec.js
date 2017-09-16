@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('Cliente Management Detail Controller', function() {
+    describe('Endereco Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockCliente, MockEndereco;
+        var MockEntity, MockPreviousState, MockEndereco;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,7 +12,6 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockCliente = jasmine.createSpy('MockCliente');
             MockEndereco = jasmine.createSpy('MockEndereco');
             
 
@@ -21,18 +20,17 @@ describe('Controller Tests', function() {
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'Cliente': MockCliente,
                 'Endereco': MockEndereco
             };
             createController = function() {
-                $injector.get('$controller')("ClienteDetailController", locals);
+                $injector.get('$controller')("EnderecoDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'unpsipApp:clienteUpdate';
+                var eventType = 'unpsipApp:enderecoUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);

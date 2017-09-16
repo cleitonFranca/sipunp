@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="cleiton (generated)" id="1505522395336-1">
+        <createTable tableName="endereco">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="enderecoPK"/>
+            </column>
+            <column name="bairro" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cep" type="VARCHAR(9)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cidade" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logradouro" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numero" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-2">
+        <addColumn tableName="cliente">
+            <column name="endereco_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-3">
+        <addUniqueConstraint columnNames="endereco_id" constraintName="UK_7v21uy9djyl7hh9464kkjsjg0" tableName="cliente"/>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-4">
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="cliente" constraintName="FK64nr9yt889by5lufr1boo5i4s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco"/>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-5">
+        <dropForeignKeyConstraint baseTableName="controle_atendimento" constraintName="fk_controle_atendimento_user_id"/>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-6">
+        <dropColumn columnName="user_id" tableName="controle_atendimento"/>
+    </changeSet>
+    <changeSet author="cleiton (generated)" id="1505522395336-7">
+        <addNotNullConstraint columnDataType="bigint" columnName="cliente_id" tableName="controle_atendimento"/>
+    </changeSet>
+</databaseChangeLog>

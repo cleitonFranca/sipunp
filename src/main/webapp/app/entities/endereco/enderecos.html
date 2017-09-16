@@ -1,20 +1,20 @@
 <div>
-    <h2 data-translate="unpsipApp.cliente.home.title">Clientes</h2>
+    <h2 data-translate="unpsipApp.endereco.home.title">Enderecos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="cliente.new" >
+                <button class="btn btn-primary" ui-sref="endereco.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down"  data-translate="unpsipApp.cliente.home.createLabel">
-                        Create new Cliente
+                    <span class="hidden-xs-down"  data-translate="unpsipApp.endereco.home.createLabel">
+                        Create new Endereco
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'unpsipApp.cliente.home.search' | translate }}">
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'unpsipApp.endereco.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -36,40 +36,40 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="nome"><span data-translate="unpsipApp.cliente.nome">Nome</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="sobreNome"><span data-translate="unpsipApp.cliente.sobreNome">Sobre Nome</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="nascimento"><span data-translate="unpsipApp.cliente.nascimento">Nascimento</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="email"><span data-translate="unpsipApp.cliente.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="endereco.id"><span data-translate="unpsipApp.cliente.endereco">Endereco</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cep"><span data-translate="unpsipApp.endereco.cep">Cep</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="logradouro"><span data-translate="unpsipApp.endereco.logradouro">Logradouro</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="bairro"><span data-translate="unpsipApp.endereco.bairro">Bairro</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numero"><span data-translate="unpsipApp.endereco.numero">Numero</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cidade"><span data-translate="unpsipApp.endereco.cidade">Cidade</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="estado"><span data-translate="unpsipApp.endereco.estado">Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="cliente in vm.clientes track by cliente.id">
-                    <td><a ui-sref="cliente-detail({id:cliente.id})">{{cliente.id}}</a></td>
-                    <td>{{cliente.nome}}</td>
-                    <td>{{cliente.sobreNome}}</td>
-                        <td>{{cliente.nascimento | date:'mediumDate'}}</td>
-                    <td>{{cliente.email}}</td>
-                    <td>
-                        <a ui-sref="endereco-detail({id:cliente.endereco.id})">{{cliente.endereco.id}}</a>
-                    </td>
+                <tr ng-repeat="endereco in vm.enderecos track by endereco.id">
+                    <td><a ui-sref="endereco-detail({id:endereco.id})">{{endereco.id}}</a></td>
+                    <td>{{endereco.cep}}</td>
+                    <td>{{endereco.logradouro}}</td>
+                    <td>{{endereco.bairro}}</td>
+                    <td>{{endereco.numero}}</td>
+                    <td>{{endereco.cidade}}</td>
+                    <td>{{endereco.estado}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="cliente-detail({id:cliente.id})"
+                                    ui-sref="endereco-detail({id:endereco.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="cliente.edit({id:cliente.id})"
+                                    ui-sref="endereco.edit({id:endereco.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="cliente.delete({id:cliente.id})"
+                                    ui-sref="endereco.delete({id:endereco.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
