@@ -40,6 +40,11 @@ public class Cliente implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @OneToOne(optional = false)
+    @NotNull
+    @JoinColumn(unique = true)
+    private Endereco endereco;
+
     public Long getId() {
         return id;
     }
@@ -98,6 +103,19 @@ public class Cliente implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public Cliente endereco(Endereco endereco) {
+        this.endereco = endereco;
+        return this;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override

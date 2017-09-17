@@ -20,6 +20,10 @@
         <dd>
             <span>{{vm.cliente.email}}</span>
         </dd>
+        <dt><span data-translate="unpsipApp.cliente.endereco">Endereco</span></dt>
+        <dd>
+            <a ui-sref="endereco-detail({id:vm.cliente.endereco.id})">{{vm.cliente.endereco.id}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

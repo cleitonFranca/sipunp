@@ -19,7 +19,8 @@
             "nome": "Nome",
             "sobreNome": "Sobre Nome",
             "nascimento": "Nascimento",
-            "email": "Email"
+            "email": "Email",
+            "endereco": "Endereco"
         }
     }
 }

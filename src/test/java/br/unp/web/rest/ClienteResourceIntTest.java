@@ -3,6 +3,7 @@ package br.unp.web.rest;
 import br.unp.UnpsipApp;
 
 import br.unp.domain.Cliente;
+import br.unp.domain.Endereco;
 import br.unp.repository.ClienteRepository;
 import br.unp.repository.search.ClienteSearchRepository;
 import br.unp.web.rest.errors.ExceptionTranslator;
@@ -96,6 +97,11 @@ public class ClienteResourceIntTest {
             .sobreNome(DEFAULT_SOBRE_NOME)
             .nascimento(DEFAULT_NASCIMENTO)
             .email(DEFAULT_EMAIL);
+        // Add required entity
+        Endereco endereco = EnderecoResourceIntTest.createEntity(em);
+        em.persist(endereco);
+        em.flush();
+        cliente.setEndereco(endereco);
         return cliente;
     }
 
