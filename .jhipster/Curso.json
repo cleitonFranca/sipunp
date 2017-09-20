@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "professor",
+            "otherEntityName": "professor",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "curso"
+        },
+        {
+            "relationshipName": "turma",
+            "otherEntityName": "turma",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "curso"
+        },
+        {
+            "relationshipName": "aluno",
+            "otherEntityName": "aluno",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "curso"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "coordenado",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170917232542",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "curso",
+    "pagination": "pagination"
+}

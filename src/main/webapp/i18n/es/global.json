@@ -10,6 +10,10 @@
                 "controleAtendimento": "Controle Atendimento",
                 "cliente": "Cliente",
                 "endereco": "Endereco",
+                "curso": "Curso",
+                "turma": "Turma",
+                "professor": "Professor",
+                "aluno": "Aluno",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
