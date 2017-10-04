@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="unpsipApp.professor.detail.title">Professor</span> {{vm.professor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="unpsipApp.professor.nome">Nome</span></dt>
+        <dd>
+            <span>{{vm.professor.nome}}</span>
+        </dd>
+        <dt><span data-translate="unpsipApp.professor.turma">Turma</span></dt>
+        <dd>
+            <span ng-repeat="turma in vm.professor.turmas">
+                <a ui-sref="turma-detail({id: turma.id})">{{turma.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="unpsipApp.professor.curso">Curso</span></dt>
+        <dd>
+            <span ng-repeat="curso in vm.professor.cursos">
+                <a ui-sref="curso-detail({id: curso.id})">{{curso.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="professor-detail.edit({id:vm.professor.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
