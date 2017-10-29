@@ -1,5 +1,6 @@
 package br.unp.domain;
 
+
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -53,6 +54,9 @@ public class ControleAtendimento implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private Cliente cliente;
+    
+    @Transient
+    public Integer quantidadePorRegiao;
 
     public Long getId() {
         return id;
@@ -178,8 +182,18 @@ public class ControleAtendimento implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    
 
-    @Override
+    public Integer getQuantidadePorRegiao() {
+		return quantidadePorRegiao;
+	}
+
+	public void setQuantidadePorRegiao(Integer quantidadePorRegiao) {
+		this.quantidadePorRegiao = quantidadePorRegiao;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -199,18 +213,13 @@ public class ControleAtendimento implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "ControleAtendimento{" +
-            "id=" + getId() +
-            ", numero='" + getNumero() + "'" +
-            ", idade='" + getIdade() + "'" +
-            ", naturalidade='" + getNaturalidade() + "'" +
-            ", queixa='" + getQueixa() + "'" +
-            ", encaminhamento='" + getEncaminhamento() + "'" +
-            ", vinculo='" + getVinculo() + "'" +
-            ", dataCadastro='" + getDataCadastro() + "'" +
-            ", dataAlteracao='" + getDataAlteracao() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "ControleAtendimento [id=" + id + ", numero=" + numero + ", idade=" + idade + ", naturalidade="
+				+ naturalidade + ", queixa=" + queixa + ", encaminhamento=" + encaminhamento + ", vinculo=" + vinculo
+				+ ", dataCadastro=" + dataCadastro + ", dataAlteracao=" + dataAlteracao + ", cliente=" + cliente
+				+ ", quantidadePorRegiao=" + quantidadePorRegiao + "]";
+	}
+
+   
 }

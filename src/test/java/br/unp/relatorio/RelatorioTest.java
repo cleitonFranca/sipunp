@@ -1,5 +1,7 @@
 package br.unp.relatorio;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.junit.Assert;
@@ -29,10 +31,13 @@ public class RelatorioTest {
 	}
 	
 	@Test
-	public void  controle_de_atendimento() {
-		ControleAtendimento c =  (ControleAtendimento) em.createQuery("select c from ControleAtendimento c").getSingleResult();
+	public void controle_de_atendimento() {
+		List<ControleAtendimento> c =  
+				em.createNativeQuery("select * from controle_atendimento c inner join cliente cl ON c.cliente_id = cl.id", ControleAtendimento.class)
+				.getResultList();
 		
-		System.out.println(c);
+		System.out.println(c.get(0).getCliente());
+		System.out.println(c.get(0).getCliente().getEndereco());
 		
 	}
 	
