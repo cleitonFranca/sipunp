@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/controle-atendimento?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_USER','ROLE_ALUNO'],
                 pageTitle: 'unpsipApp.controleAtendimento.home.title'
             },
             views: {
@@ -55,7 +55,7 @@
             parent: 'controle-atendimento',
             url: '/controle-atendimento/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_USER', 'ROLE_ALUNO'],
                 pageTitle: 'unpsipApp.controleAtendimento.detail.title'
             },
             views: {
@@ -87,7 +87,7 @@
             parent: 'controle-atendimento-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_USER', 'ROLE_ALUNO']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -112,7 +112,7 @@
             parent: 'controle-atendimento',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_USER', 'ROLE_ALUNO']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -125,8 +125,6 @@
                         entity: function () {
                             return {
                                 numero: null,
-                                idade: null,
-                                naturalidade: null,
                                 queixa: null,
                                 encaminhamento: null,
                                 vinculo: null,
@@ -147,7 +145,7 @@
             parent: 'controle-atendimento',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_USER', 'ROLE_ALUNO']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

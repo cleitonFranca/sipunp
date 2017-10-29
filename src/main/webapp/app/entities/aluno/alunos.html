@@ -49,10 +49,10 @@
                     <td>{{aluno.matricula}}</td>
                     <td>{{aluno.nome}}</td>
                     <td>
-                        <a ui-sref="endereco-detail({id:aluno.endereco.id})">{{aluno.endereco.id}}</a>
+                        <a ui-sref="endereco-detail({id:aluno.endereco.id})">Cep: {{aluno.endereco.cep}}, {{aluno.endereco.logradouro}}</a>
                     </td>
                     <td>
-                        <a ui-sref="curso-detail({id:aluno.curso.id})">{{aluno.curso.id}}</a>
+                        <a ui-sref="curso-detail({id:aluno.curso.id})">{{aluno.curso.nome}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

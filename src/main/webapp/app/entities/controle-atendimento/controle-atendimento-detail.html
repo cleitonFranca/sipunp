@@ -8,14 +8,6 @@
         <dd>
             <span>{{vm.controleAtendimento.numero}}</span>
         </dd>
-        <dt><span data-translate="unpsipApp.controleAtendimento.idade">Idade</span></dt>
-        <dd>
-            <span>{{vm.controleAtendimento.idade | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span data-translate="unpsipApp.controleAtendimento.naturalidade">Naturalidade</span></dt>
-        <dd>
-            <span>{{vm.controleAtendimento.naturalidade}}</span>
-        </dd>
         <dt><span data-translate="unpsipApp.controleAtendimento.queixa">Queixa</span></dt>
         <dd>
             <span>{{vm.controleAtendimento.queixa}}</span>
@@ -39,6 +31,10 @@
         <dt><span data-translate="unpsipApp.controleAtendimento.cliente">Cliente</span></dt>
         <dd>
             <a ui-sref="cliente-detail({id:vm.controleAtendimento.cliente.id})">{{vm.controleAtendimento.cliente.id}}</a>
+        </dd>
+        <dt><span data-translate="unpsipApp.controleAtendimento.aluno">Aluno</span></dt>
+        <dd>
+            <a ui-sref="aluno-detail({id:vm.controleAtendimento.aluno.id})">{{vm.controleAtendimento.aluno.id}}</a>
         </dd>
     </dl>
 

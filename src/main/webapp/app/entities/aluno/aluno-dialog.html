@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label data-translate="unpsipApp.aluno.endereco" for="field_endereco">Endereco</label>
-            <select class="form-control" id="field_endereco" name="endereco" ng-model="vm.aluno.endereco" ng-options="endereco as endereco.id for endereco in vm.enderecos | orderBy:'id' track by endereco.id" required>
+            <select class="form-control" id="field_endereco" name="endereco" ng-model="vm.aluno.endereco" ng-options="endereco as ('Cep: '+' '+endereco.cep + ' ' + endereco.logradouro) for endereco in vm.enderecos | orderBy:'id' track by endereco.id" required>
             </select>
         </div>
         <div ng-show="editForm.endereco.$invalid">

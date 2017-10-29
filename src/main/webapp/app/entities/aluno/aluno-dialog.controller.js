@@ -5,9 +5,9 @@
         .module('unpsipApp')
         .controller('AlunoDialogController', AlunoDialogController);
 
-    AlunoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Aluno', 'Endereco', 'Turma', 'Curso'];
+    AlunoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Aluno', 'Endereco', 'Turma', 'Curso', 'ControleAtendimento'];
 
-    function AlunoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Aluno, Endereco, Turma, Curso) {
+    function AlunoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Aluno, Endereco, Turma, Curso, ControleAtendimento) {
         var vm = this;
 
         vm.aluno = entity;
@@ -24,6 +24,7 @@
         });
         vm.turmas = Turma.query();
         vm.cursos = Curso.query();
+        vm.controleatendimentos = ControleAtendimento.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

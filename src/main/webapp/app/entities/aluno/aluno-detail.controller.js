@@ -5,9 +5,9 @@
         .module('unpsipApp')
         .controller('AlunoDetailController', AlunoDetailController);
 
-    AlunoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Aluno', 'Endereco', 'Turma', 'Curso'];
+    AlunoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Aluno', 'Endereco', 'Turma', 'Curso', 'ControleAtendimento'];
 
-    function AlunoDetailController($scope, $rootScope, $stateParams, previousState, entity, Aluno, Endereco, Turma, Curso) {
+    function AlunoDetailController($scope, $rootScope, $stateParams, previousState, entity, Aluno, Endereco, Turma, Curso, ControleAtendimento) {
         var vm = this;
 
         vm.aluno = entity;

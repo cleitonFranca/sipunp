@@ -17,14 +17,13 @@
                 "title": "Controle Atendimento"
             },
             "numero": "Numero",
-            "idade": "Idade",
-            "naturalidade": "Naturalidade",
             "queixa": "Queixa",
             "encaminhamento": "Encaminhamento",
             "vinculo": "Vinculo",
             "dataCadastro": "Data Cadastro",
             "dataAlteracao": "Data Alteracao",
-            "cliente": "Cliente"
+            "cliente": "Cliente",
+            "aluno": "Aluno"
         }
     }
 }

@@ -48,5 +48,22 @@ public class Relatorio {
 		return new ResponseEntity<>(c, HttpStatus.OK);
 		
 	}
+	
+
+	@RequestMapping("/index3")
+	@ResponseBody
+	public ResponseEntity<List<?>> index3() {
+		
+		
+		
+		List c =  em.createNativeQuery("select a.nome, count(c.id) as quantidade from controle_atendimento c "
+				+ "left join aluno a on c.aluno_id = a.id "
+				+ "left join cliente cl on c.cliente_id = cl.id group by a.nome").getResultList();
+
+		
+		
+		return new ResponseEntity<>(c, HttpStatus.OK);
+		
+	}
 
 }
