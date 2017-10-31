@@ -10,10 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.unp.domain.ControleAtendimento;
-import gherkin.deps.com.google.gson.Gson;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping("/relatorio")
@@ -33,15 +34,22 @@ public class Relatorio {
 	@ResponseBody
 	public ResponseEntity<List<?>> index2() {
 		
+		List c = Lists.newArrayList();
 		
+		try {
+			
+			c =  em.createNativeQuery("select e.bairro, count(c.id) as quantidadeRegioesAtendidas, "
+					+ "avg(extract(year from age(cl.nascimento))) as faixa_etaria, "
+					+ "e.cidade "
+					+ "from controle_atendimento c "
+					+ "inner join cliente cl ON c.cliente_id = cl.id  "
+					+ "inner join endereco e on cl.endereco_id = e.id "
+					+ "group by e.cidade, e.bairro;").getResultList();
+			
+		} catch (Exception e) {
+			new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 		
-		List c =  em.createNativeQuery("select e.bairro, count(c.id) as quantidadeRegioesAtendidas, "
-				+ "avg(extract(year from age(cl.nascimento))) as faixa_etaria, "
-				+ "e.cidade "
-				+ "from controle_atendimento c "
-				+ "inner join cliente cl ON c.cliente_id = cl.id  "
-				+ "inner join endereco e on cl.endereco_id = e.id "
-				+ "group by e.cidade, e.bairro;").getResultList();
 
 		
 		
@@ -54,15 +62,59 @@ public class Relatorio {
 	@ResponseBody
 	public ResponseEntity<List<?>> index3() {
 		
+		List c = Lists.newArrayList();
+		
+		try {
+			
+			c =  em.createNativeQuery("select a.nome, count(c.id) as quantidade from controle_atendimento c "
+					+ "left join aluno a on c.aluno_id = a.id "
+					+ "left join cliente cl on c.cliente_id = cl.id group by a.nome").getResultList();
+			
+		} catch (Exception e) {
+			new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>(c, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping("/faixaEtaria")
+	@ResponseBody
+	public ResponseEntity<List<?>> index4() {
+		
+		List c = Lists.newArrayList();
 		
 		
-		List c =  em.createNativeQuery("select a.nome, count(c.id) as quantidade from controle_atendimento c "
-				+ "left join aluno a on c.aluno_id = a.id "
-				+ "left join cliente cl on c.cliente_id = cl.id group by a.nome").getResultList();
-
+		try {
+			
+			c =  em.createNativeQuery("select distinct extract(year from age(cl.nascimento)) from controle_atendimento c "
+					+ "left join aluno a on c.aluno_id = a.id "
+					+ "left join cliente cl on c.cliente_id = cl.id order by extract(year from age(cl.nascimento)) asc").getResultList();
+		
+			
+		} catch (Exception e) {
+			new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
 		
 		
 		return new ResponseEntity<>(c, HttpStatus.OK);
+		
+	}
+
+	private List buscaPorFaixaEtaria(Integer de, Integer a) {
+		
+		try {
+			return em.createNativeQuery("select extract(year from age(cl.nascimento)) from controle_atendimento c "
+					+ "left join aluno a on c.aluno_id = a.id "
+					+ "left join cliente cl on c.cliente_id = cl.id "
+					+ "where extract(year from age(cl.nascimento)) between :de and :a ")
+					.setParameter("de", de).setParameter("a", a).getResultList();
+			
+		} catch (Exception e) {
+			
+		}
+		return null;
 		
 	}
 

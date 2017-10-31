@@ -20,6 +20,13 @@
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
+    <style>
+		@media print {
+		  body * {visibility: hidden}
+		  #printable, #printable * {visibility: visible}
+		  #printable {position: fixed;left: 0;top: 0;}
+		}
+	</style>
 </head>
 <body ng-app="unpsipApp" ng-strict-di>
     <!--[if lt IE 9]>
@@ -60,6 +67,7 @@
 
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>

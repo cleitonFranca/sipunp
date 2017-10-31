@@ -14,6 +14,11 @@
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
+                    	<span class="input-group-btn width-min" >
+                            <button id="relatorio" class="btn btn-info" >
+                                Relatório
+                            </button>
+                        </span>
                         <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'unpsipApp.controleAtendimento.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
@@ -32,7 +37,7 @@
     </div>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <table id="printable" class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -62,7 +67,7 @@
                     <td>
                         <a ui-sref="aluno-detail({id:controleAtendimento.aluno.id})">{{controleAtendimento.aluno.id}}</a>
                     </td>
-                    <td class="text-right">
+                    <td id="printable" class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="controle-atendimento-detail({id:controleAtendimento.id})"
@@ -93,3 +98,22 @@
         <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
 </div>
+<script>
+$(function(){
+	$("#relatorio").on("click", function(e) {
+		e.preventDefault;
+
+		$(".btn-group").hide();
+
+		window.print();
+
+		function rec() {
+			$(".btn-group").fadeIn();
+		}
+
+		setTimeout(500, rec());
+
+		return true;
+	})
+})
+</script>
