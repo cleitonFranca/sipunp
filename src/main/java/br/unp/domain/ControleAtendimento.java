@@ -1,6 +1,5 @@
 package br.unp.domain;
 
-
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -28,14 +27,6 @@ public class ControleAtendimento implements Serializable {
     @Column(name = "numero")
     private Integer numero;
 
-    @NotNull
-    @Column(name = "idade", nullable = false)
-    private LocalDate idade;
-
-    @NotNull
-    @Column(name = "naturalidade", nullable = false)
-    private String naturalidade;
-
     @Column(name = "queixa")
     private String queixa;
 
@@ -54,9 +45,10 @@ public class ControleAtendimento implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private Cliente cliente;
-    
-    @Transient
-    public Integer quantidadePorRegiao;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Aluno aluno;
 
     public Long getId() {
         return id;
@@ -77,32 +69,6 @@ public class ControleAtendimento implements Serializable {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
-    }
-
-    public LocalDate getIdade() {
-        return idade;
-    }
-
-    public ControleAtendimento idade(LocalDate idade) {
-        this.idade = idade;
-        return this;
-    }
-
-    public void setIdade(LocalDate idade) {
-        this.idade = idade;
-    }
-
-    public String getNaturalidade() {
-        return naturalidade;
-    }
-
-    public ControleAtendimento naturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
-        return this;
-    }
-
-    public void setNaturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
     }
 
     public String getQueixa() {
@@ -182,18 +148,21 @@ public class ControleAtendimento implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
 
-    public Integer getQuantidadePorRegiao() {
-		return quantidadePorRegiao;
-	}
+    public Aluno getAluno() {
+        return aluno;
+    }
 
-	public void setQuantidadePorRegiao(Integer quantidadePorRegiao) {
-		this.quantidadePorRegiao = quantidadePorRegiao;
-	}
+    public ControleAtendimento aluno(Aluno aluno) {
+        this.aluno = aluno;
+        return this;
+    }
 
-	@Override
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -213,13 +182,16 @@ public class ControleAtendimento implements Serializable {
         return Objects.hashCode(getId());
     }
 
-	@Override
-	public String toString() {
-		return "ControleAtendimento [id=" + id + ", numero=" + numero + ", idade=" + idade + ", naturalidade="
-				+ naturalidade + ", queixa=" + queixa + ", encaminhamento=" + encaminhamento + ", vinculo=" + vinculo
-				+ ", dataCadastro=" + dataCadastro + ", dataAlteracao=" + dataAlteracao + ", cliente=" + cliente
-				+ ", quantidadePorRegiao=" + quantidadePorRegiao + "]";
-	}
-
-   
+    @Override
+    public String toString() {
+        return "ControleAtendimento{" +
+            "id=" + getId() +
+            ", numero='" + getNumero() + "'" +
+            ", queixa='" + getQueixa() + "'" +
+            ", encaminhamento='" + getEncaminhamento() + "'" +
+            ", vinculo='" + getVinculo() + "'" +
+            ", dataCadastro='" + getDataCadastro() + "'" +
+            ", dataAlteracao='" + getDataAlteracao() + "'" +
+            "}";
+    }
 }

@@ -31,6 +31,12 @@
                 "required"
             ],
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "controleAtendimento",
+            "otherEntityName": "controleAtendimento",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "aluno"
         }
     ],
     "fields": [

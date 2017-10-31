@@ -1,5 +1,6 @@
 package br.unp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -47,6 +48,10 @@ public class Aluno implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private Curso curso;
+
+    @OneToMany(mappedBy = "aluno")
+    @JsonIgnore
+    private Set<ControleAtendimento> controleAtendimentos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -131,6 +136,31 @@ public class Aluno implements Serializable {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Set<ControleAtendimento> getControleAtendimentos() {
+        return controleAtendimentos;
+    }
+
+    public Aluno controleAtendimentos(Set<ControleAtendimento> controleAtendimentos) {
+        this.controleAtendimentos = controleAtendimentos;
+        return this;
+    }
+
+    public Aluno addControleAtendimento(ControleAtendimento controleAtendimento) {
+        this.controleAtendimentos.add(controleAtendimento);
+        controleAtendimento.setAluno(this);
+        return this;
+    }
+
+    public Aluno removeControleAtendimento(ControleAtendimento controleAtendimento) {
+        this.controleAtendimentos.remove(controleAtendimento);
+        controleAtendimento.setAluno(null);
+        return this;
+    }
+
+    public void setControleAtendimentos(Set<ControleAtendimento> controleAtendimentos) {
+        this.controleAtendimentos = controleAtendimentos;
     }
 
     @Override

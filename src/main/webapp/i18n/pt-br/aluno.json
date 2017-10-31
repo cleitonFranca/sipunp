@@ -20,7 +20,8 @@
             "nome": "Nome",
             "endereco": "Endereco",
             "turma": "Turma",
-            "curso": "Curso"
+            "curso": "Curso",
+            "controleAtendimento": "Controle Atendimento"
         }
     }
 }

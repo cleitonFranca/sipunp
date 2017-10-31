@@ -1,19 +1,24 @@
 <div>
-    <h2 data-translate="unpsipApp.controleAtendimento.home.title">Controle Atendimentos</h2>
+    <h2>Prontuário</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="controle-atendimento.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down"  data-translate="unpsipApp.controleAtendimento.home.createLabel">
-                        Create new Controle Atendimento
+                    <span class="hidden-xs-down">
+                        Criar novo Prontuário
                     </span>
                 </button>
             </div>
             <div class="col-xs-8 no-padding-right">
                 <form name="searchForm" class="form-inline">
                     <div class="input-group pull-right" >
+                    	<span class="input-group-btn width-min" >
+                            <button id="relatorio" class="btn btn-info" >
+                                Relatório
+                            </button>
+                        </span>
                         <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'unpsipApp.controleAtendimento.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
                             <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
@@ -32,19 +37,18 @@
     </div>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <table id="printable" class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="numero"><span data-translate="unpsipApp.controleAtendimento.numero">Numero</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="idade"><span data-translate="unpsipApp.controleAtendimento.idade">Idade</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="naturalidade"><span data-translate="unpsipApp.controleAtendimento.naturalidade">Naturalidade</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="queixa"><span data-translate="unpsipApp.controleAtendimento.queixa">Queixa</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="encaminhamento"><span data-translate="unpsipApp.controleAtendimento.encaminhamento">Encaminhamento</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="vinculo"><span data-translate="unpsipApp.controleAtendimento.vinculo">Vinculo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dataCadastro"><span data-translate="unpsipApp.controleAtendimento.dataCadastro">Data Cadastro</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dataAlteracao"><span data-translate="unpsipApp.controleAtendimento.dataAlteracao">Data Alteracao</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cliente.id"><span data-translate="unpsipApp.controleAtendimento.cliente">Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="aluno.id"><span data-translate="unpsipApp.controleAtendimento.aluno">Aluno</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -52,8 +56,6 @@
                 <tr ng-repeat="controleAtendimento in vm.controleAtendimentos track by controleAtendimento.id">
                     <td><a ui-sref="controle-atendimento-detail({id:controleAtendimento.id})">{{controleAtendimento.id}}</a></td>
                     <td>{{controleAtendimento.numero}}</td>
-                        <td>{{controleAtendimento.idade | date:'mediumDate'}}</td>
-                    <td>{{controleAtendimento.naturalidade}}</td>
                     <td>{{controleAtendimento.queixa}}</td>
                     <td>{{controleAtendimento.encaminhamento}}</td>
                     <td>{{controleAtendimento.vinculo}}</td>
@@ -62,7 +64,10 @@
                     <td>
                         <a ui-sref="cliente-detail({id:controleAtendimento.cliente.id})">{{controleAtendimento.cliente.id}}</a>
                     </td>
-                    <td class="text-right">
+                    <td>
+                        <a ui-sref="aluno-detail({id:controleAtendimento.aluno.id})">{{controleAtendimento.aluno.id}}</a>
+                    </td>
+                    <td id="printable" class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="controle-atendimento-detail({id:controleAtendimento.id})"
@@ -93,3 +98,22 @@
         <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
 </div>
+<script>
+$(function(){
+	$("#relatorio").on("click", function(e) {
+		e.preventDefault;
+
+		$(".btn-group").hide();
+
+		window.print();
+
+		function rec() {
+			$(".btn-group").fadeIn();
+		}
+
+		setTimeout(500, rec());
+
+		return true;
+	})
+})
+</script>

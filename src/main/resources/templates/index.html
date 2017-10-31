@@ -1,127 +1,157 @@
 <html>
-<head>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    
-    </script>
-</head>
-<body>
+  
+	<head>
 
-	<div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+	 
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
 	
-	<div id="piechart" style="width: 900px; height: 500px;"></div>
+	<body>
+
+
+		<button class="teste1">Teste</button>
+		<button class="teste2">Teste2</button>
+	
+		<div id="series_chart_div" style="width: 900px; height: 500px;"></div>
+		
+		<div id="piechart" style="width: 900px; height: 500px;"></div>
+		
+		
+		
+	
+		<script>
+	  		
+	  	$(".teste1").on("click", function(e) {
+	  		e.preventDefault;
+	  		var obj;
+	  		
+	  		$.ajax({
+	  		  url: "http://localhost:8080/relatorio/index2",
+	  		
+	  		}).done(function(data) {
+	  			
+	  			obj = data;
+	  		
+	  		  google.charts.load('current', {'packages':['corechart']});
+	  	      google.charts.setOnLoadCallback(drawSeriesChart);
+	
+	  	    function drawSeriesChart() {
+	  	    	
+	  	    	var arr1 = [];
+	  	    	
+	  	    	for ( var i in obj) {
+	  	    		arr1.push(obj[i])
+				}
+	  	    	
+	  	  
+	  				
+	  			 	var data = google.visualization.arrayToDataTable([]);
+	  			 	data.addColumn({ type: 'string', id: 'ID', label: 'Bairro' });
+	  			 	data.addColumn({ type: 'number', id: 'Quantidade de Atendimento', label: 'Quantidae de Atendimento' });
+	  			 	data.addColumn({ type: 'number', id: 'Faixa Etária Média', label: "Faixa Etária Média" });
+	  			 	data.addColumn({ type: 'string', id: 'Cidade', label: "Cidade" });
+	  			 	
+	  			  data.addRows(arr1);
+	  			  
+	  			 
+	  	    		
+	  				
+		
+	  	      var options = {
+	  	        title: 'Correlação entre quantidade de atendimento por bairro, cidade e faixa etária',
+	  	        hAxis: {title: 'Quantidade de Atendimento'},
+	  	        vAxis: {title: 'Faixa Etária'},
+	  	        bubble: {textStyle: {fontSize: 11}}
+	  	      };
+	
+	  	      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
+	  	      chart.draw(data, options);
+	  	    }
+	  		 	
+	  		 	
+	  		 	
+	  		 	
+	  		});
+	  		
+	  		
+	  		
+	  	})
+	  	
+	  	
+	  	
+	  	$(".teste2").on("click", function(e) {
+	  		
+	  		e.preventDefault;
+	  		
+	  		var obj;
+	  		
+	  		$.ajax({
+	    		  url: "http://localhost:8080/relatorio/index3",
+	    		
+	    		}).done(function(data) {
+	    			
+	    			obj = data;
+	    			
+	    			var arr1 = [];
+	    			
+	      	    	var total = 0;
+	      	    	for ( var i in obj) {
+	      	    		arr1.push(obj[i])
+	      	    		total += obj[i][1];
+	      	    		console.log(obj[i][1])
+	    			}
+	      	    	
+	      	    	console.log(total)
+	    			
+	    			 google.charts.load('current', {'packages':['corechart']});
+	    		      google.charts.setOnLoadCallback(drawChart);
+	
+	    		      function drawChart() {
+	
+	    		        var data = google.visualization.arrayToDataTable([
+	    		          /*['Task', 'Hours per Day'],
+	    		          ['Work',     11],
+	    		          ['Eat',      2],
+	    		          ['Commute',  2],
+	    		          ['Watch TV', 2],
+	    		          ['Sleep',    7]*/
+	    		        ]);
+	    		      
+	    		        data.addColumn({ type: 'string', id: 'Aluno', label: 'Aluno' });
+	    		        data.addColumn({ type: 'number', id: 'Quantidade de Atendimento', label: 'Quantidade de Atendimento' });
+	      			 	
+	      			 	
+	      			 	
+	      			  	data.addRows(arr1);
+	      			  	
+	
+	    		        var options = {
+	    		          title: 'Total:  '+total+'\n Quantidade de atendimentos por alunos'
+	    		        };
+	
+	    		        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	
+	    		        chart.draw(data, options);
+	    		      }
+	    			
+	    		      console.log(data)
+	    			
+	    			
+	    			
+	    		})
+	  		
+	  	 
+	  		
+	  		
+	  		
+	  	})
+	  		
+	  	</script>
 	
 	
-	<button>Teste</button>
-	<button class="teste2">Teste2</button>
-
-	<script>
-  		var obj;
-  	$("button").on("click", function(e) {
-  		e.preventDefault;
-  		
-  		$.ajax({
-  		  url: "http://localhost:8080/relatorio/index2",
-  		
-  		}).done(function(data) {
-  			
-  			obj = data;
-  		
-  		  google.charts.load('current', {'packages':['corechart']});
-  	      google.charts.setOnLoadCallback(drawSeriesChart);
-
-  	    function drawSeriesChart() {
-  	    	
-  	    	arr1 = [];
-  	    	
-  	    	for ( var i in obj) {
-  	    		arr1.push(obj[i])
-			}
-  	    	
-  	    	console.log(arr1);
-  	    	
-  	    	
-  	    	/**
-  	    	['ID', 'Quantidade de Atendimento', 'Faixa Etária Média', 'Cidade'],
-  	  	        	obj[0],
-  	  	        	obj[1]
-  			*/
-  				
-  			 	var data = google.visualization.arrayToDataTable([]);
-  			 	data.addColumn({ type: 'string', id: 'ID', label: 'Bairro' });
-  			 	data.addColumn({ type: 'number', id: 'Quantidade de Atendimento', label: 'Quantidae de Atendimento' });
-  			 	data.addColumn({ type: 'number', id: 'Faixa Etária Média', label: "Faixa Etária Média" });
-  			 	data.addColumn({ type: 'string', id: 'Cidade', label: "Cidade" });
-  			 	
-  			  data.addRows(arr1);
-  			  
-  			  console.log(data)
-  	    		
-  				
 	
-  	      var options = {
-  	        title: 'Correlação entre quantidade de atendimento por bairro, cidade e faixa etária',
-  	        hAxis: {title: 'Quantidade de Atendimento'},
-  	        vAxis: {title: 'Faixa Etária'},
-  	        bubble: {textStyle: {fontSize: 11}}
-  	      };
-
-  	      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-  	      chart.draw(data, options);
-  	    }
-  		 	
-  		 	
-  		 	
-  		 	
-  		});
-  		
-  		
-  		
-  	})
-  	
-  	
-  	
-  	$(".teste2").on("click", function(e) {
-  		
-  		e.preventDefault;
-  		
-  		
-  	  google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-  		
-  		
-  		
-  	})
-  		
-  	</script>
-
-
-
-
-
-</body>
+	
+	
+	</body>
 </html>

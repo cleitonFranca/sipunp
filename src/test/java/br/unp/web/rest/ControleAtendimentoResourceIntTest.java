@@ -4,6 +4,7 @@ import br.unp.UnpsipApp;
 
 import br.unp.domain.ControleAtendimento;
 import br.unp.domain.Cliente;
+import br.unp.domain.Aluno;
 import br.unp.repository.ControleAtendimentoRepository;
 import br.unp.repository.search.ControleAtendimentoSearchRepository;
 import br.unp.web.rest.errors.ExceptionTranslator;
@@ -45,12 +46,6 @@ public class ControleAtendimentoResourceIntTest {
 
     private static final Integer DEFAULT_NUMERO = 1;
     private static final Integer UPDATED_NUMERO = 2;
-
-    private static final LocalDate DEFAULT_IDADE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_IDADE = LocalDate.now(ZoneId.systemDefault());
-
-    private static final String DEFAULT_NATURALIDADE = "AAAAAAAAAA";
-    private static final String UPDATED_NATURALIDADE = "BBBBBBBBBB";
 
     private static final String DEFAULT_QUEIXA = "AAAAAAAAAA";
     private static final String UPDATED_QUEIXA = "BBBBBBBBBB";
@@ -108,8 +103,6 @@ public class ControleAtendimentoResourceIntTest {
     public static ControleAtendimento createEntity(EntityManager em) {
         ControleAtendimento controleAtendimento = new ControleAtendimento()
             .numero(DEFAULT_NUMERO)
-            .idade(DEFAULT_IDADE)
-            .naturalidade(DEFAULT_NATURALIDADE)
             .queixa(DEFAULT_QUEIXA)
             .encaminhamento(DEFAULT_ENCAMINHAMENTO)
             .vinculo(DEFAULT_VINCULO)
@@ -120,6 +113,11 @@ public class ControleAtendimentoResourceIntTest {
         em.persist(cliente);
         em.flush();
         controleAtendimento.setCliente(cliente);
+        // Add required entity
+        Aluno aluno = AlunoResourceIntTest.createEntity(em);
+        em.persist(aluno);
+        em.flush();
+        controleAtendimento.setAluno(aluno);
         return controleAtendimento;
     }
 
@@ -145,8 +143,6 @@ public class ControleAtendimentoResourceIntTest {
         assertThat(controleAtendimentoList).hasSize(databaseSizeBeforeCreate + 1);
         ControleAtendimento testControleAtendimento = controleAtendimentoList.get(controleAtendimentoList.size() - 1);
         assertThat(testControleAtendimento.getNumero()).isEqualTo(DEFAULT_NUMERO);
-        assertThat(testControleAtendimento.getIdade()).isEqualTo(DEFAULT_IDADE);
-        assertThat(testControleAtendimento.getNaturalidade()).isEqualTo(DEFAULT_NATURALIDADE);
         assertThat(testControleAtendimento.getQueixa()).isEqualTo(DEFAULT_QUEIXA);
         assertThat(testControleAtendimento.getEncaminhamento()).isEqualTo(DEFAULT_ENCAMINHAMENTO);
         assertThat(testControleAtendimento.getVinculo()).isEqualTo(DEFAULT_VINCULO);
@@ -179,42 +175,6 @@ public class ControleAtendimentoResourceIntTest {
 
     @Test
     @Transactional
-    public void checkIdadeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = controleAtendimentoRepository.findAll().size();
-        // set the field null
-        controleAtendimento.setIdade(null);
-
-        // Create the ControleAtendimento, which fails.
-
-        restControleAtendimentoMockMvc.perform(post("/api/controle-atendimentos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(controleAtendimento)))
-            .andExpect(status().isBadRequest());
-
-        List<ControleAtendimento> controleAtendimentoList = controleAtendimentoRepository.findAll();
-        assertThat(controleAtendimentoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkNaturalidadeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = controleAtendimentoRepository.findAll().size();
-        // set the field null
-        controleAtendimento.setNaturalidade(null);
-
-        // Create the ControleAtendimento, which fails.
-
-        restControleAtendimentoMockMvc.perform(post("/api/controle-atendimentos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(controleAtendimento)))
-            .andExpect(status().isBadRequest());
-
-        List<ControleAtendimento> controleAtendimentoList = controleAtendimentoRepository.findAll();
-        assertThat(controleAtendimentoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllControleAtendimentos() throws Exception {
         // Initialize the database
         controleAtendimentoRepository.saveAndFlush(controleAtendimento);
@@ -225,8 +185,6 @@ public class ControleAtendimentoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(controleAtendimento.getId().intValue())))
             .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
-            .andExpect(jsonPath("$.[*].idade").value(hasItem(DEFAULT_IDADE.toString())))
-            .andExpect(jsonPath("$.[*].naturalidade").value(hasItem(DEFAULT_NATURALIDADE.toString())))
             .andExpect(jsonPath("$.[*].queixa").value(hasItem(DEFAULT_QUEIXA.toString())))
             .andExpect(jsonPath("$.[*].encaminhamento").value(hasItem(DEFAULT_ENCAMINHAMENTO.toString())))
             .andExpect(jsonPath("$.[*].vinculo").value(hasItem(DEFAULT_VINCULO.toString())))
@@ -246,8 +204,6 @@ public class ControleAtendimentoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(controleAtendimento.getId().intValue()))
             .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO))
-            .andExpect(jsonPath("$.idade").value(DEFAULT_IDADE.toString()))
-            .andExpect(jsonPath("$.naturalidade").value(DEFAULT_NATURALIDADE.toString()))
             .andExpect(jsonPath("$.queixa").value(DEFAULT_QUEIXA.toString()))
             .andExpect(jsonPath("$.encaminhamento").value(DEFAULT_ENCAMINHAMENTO.toString()))
             .andExpect(jsonPath("$.vinculo").value(DEFAULT_VINCULO.toString()))
@@ -275,8 +231,6 @@ public class ControleAtendimentoResourceIntTest {
         ControleAtendimento updatedControleAtendimento = controleAtendimentoRepository.findOne(controleAtendimento.getId());
         updatedControleAtendimento
             .numero(UPDATED_NUMERO)
-            .idade(UPDATED_IDADE)
-            .naturalidade(UPDATED_NATURALIDADE)
             .queixa(UPDATED_QUEIXA)
             .encaminhamento(UPDATED_ENCAMINHAMENTO)
             .vinculo(UPDATED_VINCULO)
@@ -293,8 +247,6 @@ public class ControleAtendimentoResourceIntTest {
         assertThat(controleAtendimentoList).hasSize(databaseSizeBeforeUpdate);
         ControleAtendimento testControleAtendimento = controleAtendimentoList.get(controleAtendimentoList.size() - 1);
         assertThat(testControleAtendimento.getNumero()).isEqualTo(UPDATED_NUMERO);
-        assertThat(testControleAtendimento.getIdade()).isEqualTo(UPDATED_IDADE);
-        assertThat(testControleAtendimento.getNaturalidade()).isEqualTo(UPDATED_NATURALIDADE);
         assertThat(testControleAtendimento.getQueixa()).isEqualTo(UPDATED_QUEIXA);
         assertThat(testControleAtendimento.getEncaminhamento()).isEqualTo(UPDATED_ENCAMINHAMENTO);
         assertThat(testControleAtendimento.getVinculo()).isEqualTo(UPDATED_VINCULO);
@@ -359,8 +311,6 @@ public class ControleAtendimentoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(controleAtendimento.getId().intValue())))
             .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO)))
-            .andExpect(jsonPath("$.[*].idade").value(hasItem(DEFAULT_IDADE.toString())))
-            .andExpect(jsonPath("$.[*].naturalidade").value(hasItem(DEFAULT_NATURALIDADE.toString())))
             .andExpect(jsonPath("$.[*].queixa").value(hasItem(DEFAULT_QUEIXA.toString())))
             .andExpect(jsonPath("$.[*].encaminhamento").value(hasItem(DEFAULT_ENCAMINHAMENTO.toString())))
             .andExpect(jsonPath("$.[*].vinculo").value(hasItem(DEFAULT_VINCULO.toString())))

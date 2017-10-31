@@ -20,34 +20,6 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="unpsipApp.controleAtendimento.idade" for="field_idade">Idade</label>
-                <div class="input-group">
-                    <input id="field_idade" type="text" class="form-control" name="idade" uib-datepicker-popup="{{dateformat}}" ng-model="vm.controleAtendimento.idade" is-open="vm.datePickerOpenStatus.idade"
-                    required/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('idade')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
-            <div ng-show="editForm.idade.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.idade.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="unpsipApp.controleAtendimento.naturalidade" for="field_naturalidade">Naturalidade</label>
-            <input type="text" class="form-control" name="naturalidade" id="field_naturalidade"
-                    ng-model="vm.controleAtendimento.naturalidade"
-                    required/>
-            <div ng-show="editForm.naturalidade.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.naturalidade.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="unpsipApp.controleAtendimento.queixa" for="field_queixa">Queixa</label>
             <input type="text" class="form-control" name="queixa" id="field_queixa"
                     ng-model="vm.controleAtendimento.queixa"
@@ -88,12 +60,23 @@
 
         <div class="form-group">
             <label data-translate="unpsipApp.controleAtendimento.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.controleAtendimento.cliente" ng-options="cliente as cliente.nome for cliente in vm.clientes track by cliente.id" required>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.controleAtendimento.cliente" ng-options="cliente as cliente.id for cliente in vm.clientes track by cliente.id" required>
             </select>
         </div>
         <div ng-show="editForm.cliente.$invalid">
             <p class="help-block"
                 ng-show="editForm.cliente.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="unpsipApp.controleAtendimento.aluno" for="field_aluno">Aluno</label>
+            <select class="form-control" id="field_aluno" name="aluno" ng-model="vm.controleAtendimento.aluno" ng-options="aluno as aluno.id for aluno in vm.alunos track by aluno.id" required>
+            </select>
+        </div>
+        <div ng-show="editForm.aluno.$invalid">
+            <p class="help-block"
+                ng-show="editForm.aluno.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>
