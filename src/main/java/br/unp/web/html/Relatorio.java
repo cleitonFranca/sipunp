@@ -10,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 @Controller
@@ -34,6 +32,7 @@ public class Relatorio {
 	@ResponseBody
 	public ResponseEntity<List<?>> index2() {
 		
+		@SuppressWarnings("rawtypes")
 		List c = Lists.newArrayList();
 		
 		try {
@@ -62,6 +61,7 @@ public class Relatorio {
 	@ResponseBody
 	public ResponseEntity<List<?>> index3() {
 		
+		@SuppressWarnings("rawtypes")
 		List c = Lists.newArrayList();
 		
 		try {
@@ -82,6 +82,7 @@ public class Relatorio {
 	@ResponseBody
 	public ResponseEntity<List<?>> index4() {
 		
+		@SuppressWarnings("rawtypes")
 		List c = Lists.newArrayList();
 		
 		
@@ -102,6 +103,7 @@ public class Relatorio {
 		
 	}
 
+	@SuppressWarnings({ "rawtypes", "unused" })
 	private List buscaPorFaixaEtaria(Integer de, Integer a) {
 		
 		try {
