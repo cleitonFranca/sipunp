@@ -43,10 +43,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat="turma in vm.turmas track by turma.id">
-                    <td><a ui-sref="turma-detail({id:turma.id})">{{turma.id}}</a></td>
+                    <td><a ui-sref="turma-detail({id:turma.id})">{{turma.nome}}</a></td>
                     <td>{{turma.nome}}</td>
                     <td>
-                        <a ui-sref="curso-detail({id:turma.curso.id})">{{turma.curso.id}}</a>
+                        <a ui-sref="curso-detail({id:turma.curso.id})">{{turma.curso.nome}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

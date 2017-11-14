@@ -1,41 +1,160 @@
 <div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1 data-translate="home.title">Welcome, Java Hipster!</h1>
-            <p class="lead" data-translate="home.subtitle">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
-
-            <p data-translate="home.question">
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="https://jhipster.github.io/" target="_blank" rel="noopener" data-translate="home.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" data-translate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" data-translate="home.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" data-translate="home.link.follow">follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span data-translate="home.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" data-translate="home.github">GitHub</a>!
-            </p>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-6">
+			<div id="series_chart_div" style="width: 100%; height: 500px;"></div>
+		</div>
+		<div class="col-md-6">
+			<div id="piechart" style="width: 100%; height: 500px;"></div>
+		</div>
+	</div>
 </div>
+<script>
+		
+		function graph1() {
+			var obj;
+
+			$
+					.ajax({
+						url : "http://localhost:8080/relatorio/index2",
+
+					})
+					.done(
+							function(data) {
+
+								obj = data;
+
+								google.charts.load('current', {
+									'packages' : [ 'corechart' ]
+								});
+								google.charts
+										.setOnLoadCallback(drawSeriesChart);
+
+								function drawSeriesChart() {
+
+									var arr1 = [];
+
+									for ( var i in obj) {
+										arr1.push(obj[i])
+									}
+
+									var data = google.visualization
+											.arrayToDataTable([]);
+									data.addColumn({
+										type : 'string',
+										id : 'ID',
+										label : 'Bairro'
+									});
+									data.addColumn({
+										type : 'number',
+										id : 'Quantidade de Atendimento',
+										label : 'Quantidae de Atendimento'
+									});
+									data.addColumn({
+										type : 'number',
+										id : 'Faixa Etária Média',
+										label : "Faixa Etária Média"
+									});
+									data.addColumn({
+										type : 'string',
+										id : 'Cidade',
+										label : "Cidade"
+									});
+
+									data.addRows(arr1);
+
+									var options = {
+										title : 'Correlação entre quantidade de atendimento por bairro, cidade e faixa etária',
+										hAxis : {
+											title : 'Quantidade de Atendimento'
+										},
+										vAxis : {
+											title : 'Faixa Etária'
+										},
+										bubble : {
+											textStyle : {
+												fontSize : 11
+											}
+										}
+									};
+
+									var chart = new google.visualization.BubbleChart(
+											document
+													.getElementById('series_chart_div'));
+									chart.draw(data, options);
+								}
+
+							}).fail(function() {
+								   $("#series_chart_div").html("<center>Nenhum dado encontrado!</center>")
+							 })
+
+		}
+		graph1()
+	</script>
+<script>
+	
+		function graph2() {
+			var obj;
+
+			$.ajax({
+					url : "http://localhost:8080/relatorio/index3",
+					}).done(
+							function(data) {
+
+								obj = data;
+
+								var arr1 = [];
+
+								var total = 0;
+								for ( var i in obj) {
+									arr1.push(obj[i])
+									total += obj[i][1];
+									console.log(obj[i][1])
+								}
+
+								console.log(total)
+
+								google.charts.load('current', {
+									'packages' : [ 'corechart' ]
+								});
+								google.charts.setOnLoadCallback(drawChart);
+
+								function drawChart() {
+
+									var data = google.visualization
+											.arrayToDataTable([]);
+
+									data.addColumn({
+										type : 'string',
+										id : 'Aluno',
+										label : 'Aluno'
+									});
+									data.addColumn({
+										type : 'number',
+										id : 'Quantidade de Atendimento',
+										label : 'Quantidade de Atendimento'
+									});
+
+									data.addRows(arr1);
+
+									var options = {
+										title : 'Quantidade de atendimentos por alunos\nQuantidade Total de Atendimentos:  '
+												+ total
+												
+									};
+
+									var chart = new google.visualization.PieChart(
+											document.getElementById('piechart'));
+
+									chart.draw(data, options);
+								}
+
+								console.log(data)
+
+							})
+							.fail(function() {
+							   $("#piechart").html("<center>Nenhum dado encontrado!</center>")
+							 })
+							
+		}
+		graph2()
+</script>

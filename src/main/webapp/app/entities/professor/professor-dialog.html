@@ -28,11 +28,11 @@
 
         <div class="form-group">
             <label data-translate="unpsipApp.professor.turma" for="field_turma">Turma</label>
-            <select class="form-control" id="field_turma" multiple name="turma" ng-model="vm.professor.turmas" ng-options="turma as turma.id for turma in vm.turmas track by turma.id"></select>
+            <select class="form-control" id="field_turma" multiple name="turma" ng-model="vm.professor.turmas" ng-options="turma as turma.nome for turma in vm.turmas track by turma.id"></select>
         </div>
         <div class="form-group">
             <label data-translate="unpsipApp.professor.curso" for="field_curso">Curso</label>
-            <select class="form-control" id="field_curso" multiple name="curso" ng-model="vm.professor.cursos" ng-options="curso as curso.id for curso in vm.cursos track by curso.id"></select>
+            <select class="form-control" id="field_curso" multiple name="curso" ng-model="vm.professor.cursos" ng-options="curso as curso.nome for curso in vm.cursos track by curso.id"></select>
         </div>
     </div>
     <div class="modal-footer">

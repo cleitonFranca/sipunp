@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label data-translate="unpsipApp.turma.curso" for="field_curso">Curso</label>
-            <select class="form-control" id="field_curso" name="curso" ng-model="vm.turma.curso" ng-options="curso as curso.id for curso in vm.cursos track by curso.id" required>
+            <select class="form-control" id="field_curso" name="curso" ng-model="vm.turma.curso" ng-options="curso as curso.nome for curso in vm.cursos track by curso.id" required>
             </select>
         </div>
         <div ng-show="editForm.curso.$invalid">

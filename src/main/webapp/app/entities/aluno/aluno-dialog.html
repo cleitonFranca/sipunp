@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
             <label data-translate="unpsipApp.aluno.turma" for="field_turma">Turma</label>
-            <select class="form-control" id="field_turma" multiple name="turma" ng-model="vm.aluno.turmas" ng-options="turma as turma.id for turma in vm.turmas track by turma.id" required></select>
+            <select class="form-control" id="field_turma" multiple name="turma" ng-model="vm.aluno.turmas" ng-options="turma as turma.nome for turma in vm.turmas track by turma.id" required></select>
         </div>
         <div ng-show="editForm.turma.$invalid">
             <p class="help-block"
@@ -65,7 +65,7 @@
         </div>
         <div class="form-group">
             <label data-translate="unpsipApp.aluno.curso" for="field_curso">Curso</label>
-            <select class="form-control" id="field_curso" name="curso" ng-model="vm.aluno.curso" ng-options="curso as curso.id for curso in vm.cursos track by curso.id" required>
+            <select class="form-control" id="field_curso" name="curso" ng-model="vm.aluno.curso" ng-options="curso as curso.nome for curso in vm.cursos track by curso.id" required>
             </select>
         </div>
         <div ng-show="editForm.curso.$invalid">
